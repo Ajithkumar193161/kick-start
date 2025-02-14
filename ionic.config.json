@@ -1,0 +1,7 @@
+{
+  "name": "Kick Start",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

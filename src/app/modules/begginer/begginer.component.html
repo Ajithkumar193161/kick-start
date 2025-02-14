@@ -1,0 +1,11 @@
+<ion-content>
+  <ion-list id="labels-list">
+    <ion-list-header>Workouts</ion-list-header>
+
+    <ion-item lines="none" *ngFor="let label of appPages" (click)="workoutpage(label.url)">
+      <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
+      <ion-label>{{ label.title }}</ion-label>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
