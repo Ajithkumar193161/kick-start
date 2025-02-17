@@ -6,13 +6,16 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AppComponent } from 'src/app/app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth.component';
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent,AuthComponent],
   imports: [
     CommonModule,
     AuthRoutingModule, IonicModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
 })
