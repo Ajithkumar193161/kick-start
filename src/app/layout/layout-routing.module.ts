@@ -12,13 +12,13 @@ const routes: Routes = [
         path: 'begginer',
         loadChildren: () =>
           import('../modules/begginer/begginer.module').then((m) => m.BegginerModule),
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'intermetiate',
         loadChildren: () =>
           import('../modules/intermetiate/intermetiate.module').then((m) => m.IntermetiateModule),
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       // {
       //   path: 'Groceris/list',
