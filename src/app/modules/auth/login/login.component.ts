@@ -22,28 +22,33 @@ export class LoginComponent  implements OnInit {
     });
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    window.sessionStorage.clear();
+  }
   async onLogin() {
-    const { username, password } = this.loginForm.value; 
-    const user = this.supabaseService.loginUser(username, password );
-    if (await user) {
-      this.ROUTER.navigateByUrl('/layout');
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      const user = await this.supabaseService.loginUser(username, password);
+      if (user && user.length > 0) {
+        localStorage.setItem('user', JSON.stringify(user));
         const toast = await this.toastCtrl.create({
           message: 'Login Successful!',
           duration: 2000,
           position: 'bottom',
-          color: 'success'
+          color: 'success',
         });
-        toast.present();
-    }
-    else{
-      const toast = await this.toastCtrl.create({
-        message: 'Invalid User',
-        duration: 2000,
-        position: 'bottom',
-        color: 'error'
-      });
-      toast.present();
+        await toast.present();
+        this.ROUTER.navigateByUrl('/layout');
+      } else {
+        const toast = await this.toastCtrl.create({
+          message: 'Invalid User or Credential',
+          duration: 2000,
+          position: 'bottom',
+          color: 'danger',
+        });
+        await toast.present();
+      }
     }
   }
+  
 }

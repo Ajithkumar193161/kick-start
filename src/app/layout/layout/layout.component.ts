@@ -36,6 +36,7 @@ export class LayoutComponent  implements OnInit {
     });
     toast.present();
     this.ROUTE.navigate(['/login']);
+    localStorage.removeItem('user');
   }
 }
 

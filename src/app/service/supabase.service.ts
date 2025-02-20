@@ -19,7 +19,6 @@ export class SupabaseService {
       .select('*')
       .eq('Name', username)
       .eq('password', password)
-      .single();
   
     if (error) throw error;
     return data; 
