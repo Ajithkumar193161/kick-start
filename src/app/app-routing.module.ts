@@ -8,10 +8,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule),
-  },
-  {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then( m => m.AuthModule),
   },
@@ -24,7 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules,useHash: true  })
   ],
   exports: [RouterModule]
 })
