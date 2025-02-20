@@ -10,12 +10,10 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule),
-    canActivate: [AuthGuard]
   },
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then( m => m.AuthModule),
-    canActivate: [AuthGuard]
   },
   {
     path: 'layout',
