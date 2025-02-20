@@ -34,7 +34,7 @@ export class LoginComponent  implements OnInit {
         const toast = await this.toastCtrl.create({
           message: 'Login Successful!',
           duration: 2000,
-          position: 'bottom',
+          position: 'top',
           color: 'success',
         });
         await toast.present();
@@ -43,7 +43,7 @@ export class LoginComponent  implements OnInit {
         const toast = await this.toastCtrl.create({
           message: 'Invalid User or Credential',
           duration: 2000,
-          position: 'bottom',
+          position: 'top',
           color: 'danger',
         });
         await toast.present();
