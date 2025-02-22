@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
-import { SupabaseService } from 'src/app/service/supabase.service';
+import { SupabaseService } from 'src/app/shared/service/supabase.service';
 
 @Component({
   selector: 'app-login',
