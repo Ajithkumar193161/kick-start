@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +16,8 @@ export class LayoutComponent  implements OnInit {
   ];
   constructor(private ROUTE: Router,
     private cdr: ChangeDetectorRef,
-    private menuCtrl: MenuController) { }
+    private menuCtrl: MenuController,
+    private toastCtrl: ToastController) { }
 
 
   ngOnInit() {}
@@ -25,4 +26,17 @@ export class LayoutComponent  implements OnInit {
     this.menuCtrl.close();
     this.cdr.detectChanges();
   }
+  async logout() {
+    localStorage.removeItem('userToken');
+    const toast = await this.toastCtrl.create({
+      message: 'You have been logged out!',
+      duration: 2000,
+      position: 'bottom',
+      color: 'danger'
+    });
+    toast.present();
+    this.ROUTE.navigate(['/login']);
+    localStorage.removeItem('user');
+  }
 }
+

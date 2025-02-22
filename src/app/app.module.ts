@@ -6,6 +6,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AuthModule } from './modules/auth/auth.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
+import { HttpLoadingDialogService } from './shared/loading/loading-dialog/loading-dialog.service';
+import { HttpCoreHandlerModule } from './shared/HttpCoreHandler/httpcorehandler.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,8 +16,12 @@ import { AppRoutingModule } from './app-routing.module';
     IonicModule.forRoot(),
      AppRoutingModule,
      AuthModule,
+     SharedModule,
+     HttpCoreHandlerModule
     ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+     HttpLoadingDialogService,],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}
