@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
   <div class="login-container">
-    <ion-card class="login-card">
+    <ion-card class="login-card" *ngIf="login">
       <ion-card-header>
         <ion-card-title>Login</ion-card-title>
       </ion-card-header>
@@ -22,6 +22,45 @@
           </p>
           <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">Login</ion-button>
         </form>
+        <p class="text-center">
+          Don't have an account? <a href="#" (click)="loginpage('signup')">Sign Up</a>
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="login-card" *ngIf="!login">
+      <ion-card-header>
+        <ion-card-title>Sign Up</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+          </ion-item>
+          <p *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="error">
+            Valid Email is required
+          </p>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <p *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched" class="error">
+            Password is required (min 6 chars)
+          </p>
+
+          <ion-item>
+            <ion-label position="floating">Confirm Password</ion-label>
+            <ion-input type="password" formControlName="confirmPassword"></ion-input>
+          </ion-item>
+          <p *ngIf="signupForm.hasError('passwordMismatch') && signupForm.touched" class="error">
+            Passwords do not match
+          </p>
+          <ion-button expand="block" type="submit" [disabled]="signupForm.invalid">Sign Up</ion-button>
+        </form>
+        <p class="text-center">
+          Already have an account?  <a href="#" (click)="loginpage('login')">Login</a>
+        </p>
       </ion-card-content>
     </ion-card>
   </div>
