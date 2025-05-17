@@ -38,7 +38,8 @@ export class SupabaseService {
           redirectTo: 'https://ajithkumar193161.github.io/kick-start/#'
         }
       });
-      this.method()
+      // this.method()
+      this.ROUTER.navigate(['/layout']);
       if (error) throw error;
     });
   }  
@@ -51,7 +52,6 @@ export class SupabaseService {
       const facebookName = user.user_metadata?.['name'] || 'Unknown';
       localStorage.setItem('fb_id', facebookId);
       localStorage.setItem('fb_name', facebookName);
-      this.ROUTER.navigate(['/layout']);
     }
   }
   async loginUser(email: string, password: string) {
