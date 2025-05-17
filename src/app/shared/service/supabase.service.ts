@@ -29,8 +29,20 @@ export class SupabaseService {
       return data;
     });
   }
+  async facebook() {
+    return this.handleRequest(async () => {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'facebook',
+        options: {
+          redirectTo: 'https://localhost:8100/#/auth-callback?next=layout'
+        }
+      });
+      console.log(data)
+      if (error) throw error;
+    });
+  }  
   async loginUser(email: string, password: string) {
-    try {
+    return this.handleRequest(async () => {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
@@ -39,20 +51,17 @@ export class SupabaseService {
       if (error) {
         console.error("Error during login:", error.message);
         return null;
-      } else {        
+      } else {
         if (data?.session?.access_token) {
           localStorage.setItem("supabase_jwt", data.session.access_token);
         }
   
         return data;
       }
-    } catch (err) {
-      console.error("Unexpected error during login:", err);
-      return null; 
-    }
-  }   
+    });
+  }
   async SignInUser(email: string, password: string) {
-    try {
+    return this.handleRequest(async () => {
       const { data: existingUser, error: signInError } = await supabase.auth.signInWithPassword({
         email: email,
         password: password
@@ -76,9 +85,7 @@ export class SupabaseService {
       }
   
       return { success: true, message: "Signup successful! Please check your email to confirm." };
-    } catch (err) {
-      return { success: false, message: "Something went wrong. Please try again." };
-    }
+    });
   }
   
   
