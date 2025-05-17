@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { supabase } from 'src/app/shared/supabase/supabase';
 import { HttpLoadingDialogService } from '../loading/loading-dialog/loading-dialog.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SupabaseService {
-  constructor(
+  constructor(private ROUTER: Router,
     private loadingDialogService: HttpLoadingDialogService,
   ) {}
 
@@ -34,13 +35,25 @@ export class SupabaseService {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'facebook',
         options: {
-          redirectTo: 'https://ajithkumar193161.github.io/kick-start/#/auth-callback?next=layout'
+          redirectTo: 'https://ajithkumar193161.github.io/kick-start/#'
         }
       });
-      console.log(data)
+      this.method()
       if (error) throw error;
     });
   }  
+  async method(){
+     const { data: { session }, error } = await supabase.auth.getSession();
+
+    if (session) {
+      const user = session.user;
+      const facebookId = user.id;
+      const facebookName = user.user_metadata?.['name'] || 'Unknown';
+      localStorage.setItem('fb_id', facebookId);
+      localStorage.setItem('fb_name', facebookName);
+      this.ROUTER.navigate(['/layout']);
+    }
+  }
   async loginUser(email: string, password: string) {
     return this.handleRequest(async () => {
       const { data, error } = await supabase.auth.signInWithPassword({
