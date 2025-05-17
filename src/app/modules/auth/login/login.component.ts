@@ -90,6 +90,14 @@ export class LoginComponent  implements OnInit {
     }
   } 
 
+  async loginWithFacebook() {
+    try {
+      const userData = await this.supabaseService.facebook();
+      console.log('Logged in user data:', userData);
+    } catch (error) {
+      console.error('Error during Facebook login:', error);
+    }
+  }
  passwordMatchValidator(formGroup: FormGroup) {
    const password = formGroup.get('password')?.value;
    const confirmPassword = formGroup.get('confirmPassword')?.value;

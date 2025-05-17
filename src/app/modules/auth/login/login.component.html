@@ -25,6 +25,7 @@
         <p class="text-center">
           Don't have an account? <a href="#" (click)="loginpage('signup')">Sign Up</a>
         </p>
+        <button (click)="loginWithFacebook()">Login with Facebook</button>
       </ion-card-content>
     </ion-card>
     <ion-card class="login-card" *ngIf="!login">
