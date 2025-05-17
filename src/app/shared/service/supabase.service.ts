@@ -35,11 +35,9 @@ export class SupabaseService {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'facebook',
         options: {
-          redirectTo: 'https://ajithkumar193161.github.io/kick-start/#'
+          redirectTo: 'https://ajithkumar193161.github.io/kick-start/#/layout'
         }
       });
-      // this.method()
-      this.ROUTER.navigate(['/layout']);
       if (error) throw error;
     });
   }  
