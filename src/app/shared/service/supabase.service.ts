@@ -34,7 +34,7 @@ export class SupabaseService {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'facebook',
         options: {
-          redirectTo: 'https://localhost:8100/#/auth-callback?next=layout'
+          redirectTo: 'https://ajithkumar193161.github.io/kick-start/#/auth-callback?next=layout'
         }
       });
       console.log(data)
